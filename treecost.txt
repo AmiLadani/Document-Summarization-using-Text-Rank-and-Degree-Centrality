@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+int costofatree(vector<int>vect)
+{
+    int n=vect.size();
+    int dp[n][n];
+    for(int i=0;i<n;i++)
+    {
+        dp[i][i]=0;
+    }
+    for(int l=2;l<=n;l++)
+    {
+        for(int i=0;i<n-l+1;i++)
+        {
+            int j=i+l-1;
+            dp[i][j]=INT_MAX;
+            for(int k=i;k<j;k++)
+            {
+                int x=dp[i][k]+dp[k+1][j]+*max_element(vect.begin()+i,vect.begin()+k+1)*(*max_element(vect.begin()+k+1,vect.begin()+j+1));
+                dp[i][j]=min(dp[i][j],x);
+            }
+        }
+    }
+    return dp[0][n-1];
+}
+int main()
+{
+vector<int> b={4,6,2};
+cout<< costofatree(b);
+}
+
+https://www.geeksforgeeks.org/count-sub-arrays-sum-divisible-k/
+https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/
+https://www.geeksforgeeks.org/replace-duplicates-with-greater-than-previous-duplicate-value/
+https://ideone.com/K7i9LB      https://stackoverflow.com/questions/9493853/given-an-array-find-out-the-next-smaller-element-for-each-element
+https://stackoverflow.com/questions/38539213/find-the-least-greater-element-on-the-right
+  
